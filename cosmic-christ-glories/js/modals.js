@@ -55,7 +55,7 @@ document.addEventListener('DOMContentLoaded', function() {
             });
             
             const imageUrl = event.imageUrl ?
-                `https://church-backend-eez4.onrender.com/${event.imageUrl.replace(/\\/g, '/')}` :
+                `https://church-backend-eez4.onrender.com/${event.imageUrl.replace(/^public[\\/]/, '').replace(/\\/g, '/')}`:
                 'https://via.placeholder.com/400x250?text=Event+Image';
 
             eventCard.innerHTML = `
@@ -125,6 +125,8 @@ modalOverlay.addEventListener('click', function (e) {
     },
     totalTickets: document.getElementById('booking-guests').value
   };
+
+//   https://church-backend-eez4.onrender.com
 
   try {
     const res = await fetch('https://church-backend-eez4.onrender.com/api/bookings', {
